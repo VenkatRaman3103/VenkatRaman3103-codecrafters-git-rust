@@ -6,8 +6,8 @@ mod initialize;
 
 fn main() {
     let argument: Vec<String> = env::args().collect();
-    // let root = ".git";
-    let root = "test/.git";
+    let root = ".git";
+    // let root = "test/.git";
 
     if argument.len() > 1 && argument[1] == "init" {
         initialize::git_repo(root);
