@@ -7,3 +7,7 @@ use std::fs;
 pub fn create_folder(path: &str) -> Result<(), std::io::Error> {
     fs::create_dir(path)
 }
+
+pub fn read_file(path: &str) -> Vec<u8> {
+    fs::read(path).expect("Error in reading file")
+}
