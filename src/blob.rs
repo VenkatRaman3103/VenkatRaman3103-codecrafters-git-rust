@@ -25,6 +25,7 @@ pub fn read_blob(argument: Vec<String>) {
 
     print!("{}", body);
 }
+
 pub fn create_blob(argument: &str) {
     // 1. Read the content of the file
     let file_content_bytes = fs_utils::read_file(argument);
