@@ -1,13 +1,12 @@
 use crate::fs_utils;
 use flate2::{read::ZlibDecoder, write::ZlibEncoder, Compression};
 use hex;
+use sha1::digest::typenum::UInt;
 use sha1::{Digest, Sha1};
 use std::io::Read;
 use std::{fs::File, io::Write};
 
-pub fn read_blob(argument: Vec<String>) {
-    let blob_object = &argument[3];
-
+pub fn read_blob(blob_object: &str) {
     let object_folder = &blob_object[0..2];
 
     let object_file = format!(".git/objects/{}/{}", object_folder, &blob_object[2..]);
@@ -42,12 +41,13 @@ pub fn create_blob(argument: &str) {
     let mut hasher = Sha1::new();
     hasher.update(&blob_content);
     let object_hash = hasher.finalize();
-    let hex_hash = hex::encode(object_hash);
+    let hex_hash: String = hex::encode(object_hash);
 
     println!("{}", hex_hash);
 
     // 5. Compress blob content
     let mut encoder = ZlibEncoder::new(Vec::new(), Compression::default());
+
     encoder
         .write_all(&blob_content)
         .expect("Error compressing blob");
