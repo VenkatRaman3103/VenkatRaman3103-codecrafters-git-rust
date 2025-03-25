@@ -1,7 +1,6 @@
 use crate::fs_utils;
 use flate2::{read::ZlibDecoder, write::ZlibEncoder, Compression};
-use hex;
-use sha1::digest::typenum::UInt;
+// use hex;
 use sha1::{Digest, Sha1};
 use std::io::Read;
 use std::{fs::File, io::Write};
